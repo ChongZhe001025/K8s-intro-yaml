@@ -1,13 +1,16 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: blue-nginx
 spec:
   replicas: 2
+  selector: 
+    matchLabels:
+      app: blue-nginx
   template:
     metadata:
       labels:
-        app: blue-nginx
+        app: blue-nginx 
     spec:
       containers:
         - name: nginx
@@ -15,16 +18,19 @@ spec:
           ports:
             - containerPort: 3000
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: purple-nginx
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: purple-nginx
   template:
     metadata:
       labels:
-        app: purple-nginx
+        app: purple-nginx 
     spec:
       containers:
         - name: nginx
